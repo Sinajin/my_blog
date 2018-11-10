@@ -10,5 +10,7 @@ router.get('/login',ctrl.showLoginPage)
 router.post('/register',ctrl.reg)
 // 监听登录的请求
 router.post('/login',ctrl.login)
+// 监听 注销请求
+router.get('/logout',ctrl.logout)
 
 module.exports = router
