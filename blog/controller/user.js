@@ -41,6 +41,7 @@ const login = (req,res)=>{
     conn.query(sql1,[body.username, body.password],(err,result)=>{
       if(err) return res.send({msg:'用户名登录失败',status:501})  
       if(result.length !==1)return res.send({msg:'用户登录失败',status:502})
+    //   console.log(req.session)
     //   console.log(result)
     // 把登录成功之后哦的用户信息,挂在到session 上
     req.session.user = result[0]
@@ -51,10 +52,17 @@ const login = (req,res)=>{
     })
   
 }
+// 注销
+const logout = (req,res)=>{
+    req.session.destroy(function(){
+        res.redirect('/')
+    })
+}
 
 module.exports = {
     showRegisterPage,
     showLoginPage,
     reg,
-    login
+    login,
+    logout
 }
